@@ -1,0 +1,14 @@
+<% provide(:title, 'All authors') %>
+<h1>All authors</h1>
+
+<%= will_paginate %>
+
+<ul class="authors">
+  <% @authors.each do |author| %>
+    <li>
+      <%= author.forname %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
