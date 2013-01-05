@@ -19,6 +19,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-  
+    @author = Author.find(params[:id])
+    @user = User.find(@author.user_id)
   end
 end
