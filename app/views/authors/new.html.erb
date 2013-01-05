@@ -1,0 +1,21 @@
+<% provide(:title, 'Create new user') %>
+<h1>Create new user</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@author) do |f| %>
+      <% #= render 'shared/error_messages' %>
+
+      <%= f.label :forename %>
+      <%= f.text_field :forename %>
+
+      <%= f.label :surname %>
+      <%= f.text_field :surname %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.submit "Create new author", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
