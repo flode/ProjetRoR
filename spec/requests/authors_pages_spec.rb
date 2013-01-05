@@ -11,7 +11,8 @@ describe "Authors" do
   end
 
   describe "new author"
-    before(:each) do
+   let(:submit) { "Create new author" }
+   before(:each) do
       sign_in user
       visit '/authors/new'
     end
@@ -30,8 +31,8 @@ describe "Authors" do
 
     describe "with valid information" do
       before do
-        fill_in "Forename",         with: "F"
-        fill_in "Lastname",        with: "L"
+        fill_in "author_forename", with: "F"
+        fill_in "author_surname", with: "L"
       end
 
       it "should create an author" do
@@ -40,11 +41,11 @@ describe "Authors" do
       
       describe "after saving the author" do
         before { click_button submit }
-        let(:author) { Author.find_by_forename_lastname('F', 'L') }
+        let(:author) { Author.find_by_forename_and_surname('F', 'L') }
 
         it { should have_selector('title', text: author.lastname) }
 #	expect(author.user_id).to eq(user.id)
-        it { should have_selector('div.alert.alert-success', text: 'Author created') }
+        it { should have_selector('div.alert.alert-success', text: 'New author created!') }
     end
   end
 end
