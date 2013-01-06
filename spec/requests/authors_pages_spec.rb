@@ -43,7 +43,7 @@ describe "Authors" do
         before { click_button submit }
         let(:author) { Author.find_by_forename_and_surname('F', 'L') }
 
-        it { should have_selector('title', text: author.lastname) }
+        it { should have_selector('title', text: author.surname) }
 #	expect(author.user_id).to eq(user.id)
         it { should have_selector('div.alert.alert-success', text: 'New author created!') }
     end

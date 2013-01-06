@@ -51,11 +51,17 @@ describe "index" do
   end
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:author).user }
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
+
+    it "have authors list" do
+      Author.find_all_by_user_id(user.id).each do |author|
+        page.should have_content(author.surname)
+      end
+    end
   end
 
   describe "signup" do

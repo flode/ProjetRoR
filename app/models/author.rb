@@ -1,5 +1,6 @@
 class Author < ActiveRecord::Base
   attr_accessible :description, :forename, :surname, :user_id
+  belongs_to :user
   validates :forename, presence: true
   validates :surname, presence: true
   validates :user_id, presence: true

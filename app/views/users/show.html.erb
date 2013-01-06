@@ -9,3 +9,12 @@
     </section>
   </aside>
 </div>
+
+<ul class="authors">
+  <% @user.author.each do |author| %>
+    <li>
+      <%= link_to author.surname, author %>
+    </li>
+  <% end %>
+</ul>
+

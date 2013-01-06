@@ -9,5 +9,12 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :author do
+    sequence(:forename) { |n| "Author #{n}" }
+    sequence(:surname) { |n| "AuthorName #{n}" }
+
+    association :user_id, factory: :user
+  end
 end
 
