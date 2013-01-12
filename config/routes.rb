@@ -1,6 +1,7 @@
 ExampleApp::Application.routes.draw do
   resources :users
   resources :authors
+  resources :publications
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'static_pages#home'
 

@@ -16,5 +16,12 @@ FactoryGirl.define do
 
     association :user_id, factory: :user
   end
+
+  factory :publication do
+    sequence(:name) { |n| "Author #{n}" }
+    sequence(:date) { |n| "199#{n}" }
+
+#    association :user_id, factory: :user
+  end
 end
 
