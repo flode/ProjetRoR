@@ -1,0 +1,14 @@
+<% provide(:title, 'All publications') %>
+<h1>All publications</h1>
+
+<%= will_paginate %>
+
+<ul class="publications">
+  <% @publications.each do |publication| %>
+    <li>
+      <%= publication.name %>(<%= publication.date %>)
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

@@ -1,0 +1,19 @@
+<% provide(:title, @publication.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @publication.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
+
+<ul class="authors">
+  <% @publication.authors.each do |author| %>
+    <li>
+      <%= link_to author.forename, author %>
+    </li>
+  <% end %>
+</ul>
+

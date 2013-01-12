@@ -8,6 +8,7 @@ describe Author do
   it { should respond_to(:forename) }
   it { should respond_to(:user_id) }
   it { should respond_to(:description) }
+  it { should respond_to(:user) }
 
   it { should be_valid }
 
