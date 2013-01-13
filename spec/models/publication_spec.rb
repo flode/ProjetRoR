@@ -7,6 +7,11 @@ describe Publication do
 
   it { should respond_to(:name) }
   it { should respond_to(:date) }
+  it { should respond_to(:type) }
+  it { should respond_to(:publication) }
+  it { should respond_to(:month) }
+  it { should respond_to(:notes) }
+  it { should respond_to(:description) }
   it { should respond_to(:authors) }
 
   it { should be_valid }

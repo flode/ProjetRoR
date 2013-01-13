@@ -72,6 +72,11 @@ describe "Publication pages" do
       before do
         fill_in "Name",         with: "Example Publication"
         fill_in "Date",        with: "1991"
+        fill_in "Type",        with: "Journal"
+        fill_in "Publication",        with: "Science Journal"
+        fill_in "Month",        with: "5"
+        fill_in "Notes",        with: "nouveau"
+        fill_in "Description",        with: "boring"
       end
 
       it "should create a publication" do

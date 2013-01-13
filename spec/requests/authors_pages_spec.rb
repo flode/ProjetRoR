@@ -62,6 +62,7 @@ describe "Authors" do
       before do
         fill_in "author_forename", with: "F"
         fill_in "author_surname", with: "L"
+        fill_in "author_lab", with: "Univ"
       end
 
       it "should create an author" do

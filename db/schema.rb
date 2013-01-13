@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130112114541) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "lab"
   end
 
   create_table "authors_publications", :id => false, :force => true do |t|
@@ -32,8 +33,13 @@ ActiveRecord::Schema.define(:version => 20130112114541) do
   create_table "publications", :force => true do |t|
     t.string   "date"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "type"
+    t.string   "publication"
+    t.integer  "month"
+    t.string   "notes"
+    t.string   "description"
   end
 
   create_table "users", :force => true do |t|
