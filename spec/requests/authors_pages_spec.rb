@@ -8,6 +8,12 @@ describe "Authors" do
     let(:author) { FactoryGirl.create (:author) }
     before { visit author_path(author) }
     it { should have_content(author.surname) }
+
+    it "have publications list" do
+      author.publications.each do |pub|
+        page.should have_content(pub.name)
+      end
+    end
   end
 
   describe "new author"
