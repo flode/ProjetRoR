@@ -6,8 +6,8 @@ describe "Authors" do
   let(:user) { FactoryGirl.create(:user) }
   describe "Profile page with name" do
     let(:author) { FactoryGirl.create (:author) }
-    before { visit authors_path }
-    it { should have_content('name') }
+    before { visit author_path(author) }
+    it { should have_content(author.surname) }
   end
 
   describe "new author"
