@@ -14,7 +14,7 @@ FactoryGirl.define do
     sequence(:forename) { |n| "Author #{n}" }
     sequence(:surname) { |n| "AuthorName #{n}" }
 
-    association :user_id, factory: :user
+    user
   end
 
   factory :publication do

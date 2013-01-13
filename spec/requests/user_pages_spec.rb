@@ -57,11 +57,22 @@ describe "index" do
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
 
+    it { should_not have_selector('a',    text: "Add Author") }
+
     it "have authors list" do
       Author.find_all_by_user_id(user.id).each do |author|
         page.should have_content(author.surname)
       end
     end
+  end
+
+  describe "profile logged in" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      sign_in user
+      visit edit_user_path(user)
+    end
+    it { should have_selector('a',    text: "Add Author") }
   end
 
   describe "signup" do
@@ -100,7 +111,7 @@ describe "index" do
         let(:user) { User.find_by_email('user@example.com') }
 
         it { should have_selector('title', text: user.name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_selector('div.alert.alert-success', text: 'Bienvenue a la gestion bibliographique!') }
         it { should have_link('Sign out') }
       end
 

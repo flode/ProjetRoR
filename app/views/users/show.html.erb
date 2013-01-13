@@ -9,7 +9,9 @@
     </section>
   </aside>
 </div>
-
+<% if current_user != nil && @user.id == current_user.id %>
+  <%= link_to "Add Author", new_author_path %><br/>
+<% end %>
 <ul class="authors">
   <% @user.author.each do |author| %>
     <li>
