@@ -20,7 +20,7 @@ FactoryGirl.define do
   factory :publication do
     sequence(:name) { |n| "Author #{n}" }
     sequence(:date) { |n| "199#{n}" }
-
+    authors {[FactoryGirl.create(:author)]}
 #    association :user_id, factory: :user
   end
 end

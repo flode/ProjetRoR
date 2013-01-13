@@ -3,16 +3,20 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= @publication.name %>
+        <%= @publication.name %> ( <%= @publication.date %>)
       </h1>
     </section>
   </aside>
 </div>
 
+<% if current_user != nil #TODO nur der richige%>
+  <%= link_to "Edit", edit_publication_path %>
+<% end %>
+
 <ul class="authors">
   <% @publication.authors.each do |author| %>
     <li>
-      <%= link_to author.forename, author %>
+      <%= link_to author.surname, author %>
     </li>
   <% end %>
 </ul>

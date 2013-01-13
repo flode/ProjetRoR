@@ -1,6 +1,10 @@
 <% provide(:title, 'All publications') %>
 <h1>All publications</h1>
 
+<% if current_user != nil %>
+  <%= link_to "Add Publication", new_publication_path %>
+<% end %>
+
 <%= will_paginate %>
 
 <ul class="publications">

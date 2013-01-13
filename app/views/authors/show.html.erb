@@ -9,8 +9,15 @@ associated User <%= link_to @author.user.name, @author.user %>
     </section>
   </aside>
 </div>
+<% if (current_user != nil && current_user.id == @author.user.id) %>
+  <%= link_to "Edit", edit_author_path(@author) %><br/>
+<% end %>
 
-Publications
+<% if current_user != nil && @author.user.id == current_user.id %>
+  <%= link_to "Add Publication", new_publication_path %><br/>
+<% end %>
+
+<h3>Publications</h3>
 <ul class="publications">
   <% @author.publications.each do |publication| %>
     <li>

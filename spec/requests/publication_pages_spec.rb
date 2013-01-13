@@ -27,10 +27,20 @@ describe "Publication pages" do
     end
   end
 
-  describe "publication page logged_in" do
+  describe "publication page logged_in other user" do
     let (:pub) { FactoryGirl.create(:publication) }
     before do
       sign_in user
+      visit publication_path(pub)
+    end
+
+    it { should_not have_selector('a', text: 'Edit') }
+  end
+
+  describe "publication page logged_in" do
+    let (:pub) { FactoryGirl.create(:publication) }
+    before do
+      sign_in pub.authors[0].user
       visit publication_path(pub)
     end
 
@@ -76,9 +86,7 @@ describe "Publication pages" do
         it { should have_selector('div.alert.alert-success', text: 'New publication created!') }
         it { should have_link('Sign out') }
       end
-
     end
-
   end
 end
 
