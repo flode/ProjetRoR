@@ -5,11 +5,12 @@
       <h1>
         <%= @author.surname %>, <%= @author.forename %>
       </h1>
-associated User <%= @user.name %>
+associated User <%= link_to @author.user.name, @author.user %>
     </section>
   </aside>
 </div>
 
+Publications
 <ul class="publications">
   <% @author.publications.each do |publication| %>
     <li>
