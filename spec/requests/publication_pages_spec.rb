@@ -6,24 +6,35 @@ describe "Publication pages" do
   let(:user) { FactoryGirl.create(:user) }
 
   describe "index" do
-    
+    it { should have_selector('a', text: 'Add Publication') }
   end
 
   describe "publication page" do
     let (:pub) { FactoryGirl.create(:publication) }
     before do
-      sign_in user
       visit publication_path(pub)
     end
 
     it { should have_selector('h1', text: pub.name) }
-    it { should have_content('') }
+    it { should_not have_selector('a', text: 'Edit') }
+    it { should have_content(pub.name) }
+    it { should have_content(pub.date) }
 
     it "have authors list" do
       pub.authors.each do |author|
         page.should have_content(author.surname)
       end
     end
+  end
+
+  describe "publication page logged_in" do
+    let (:pub) { FactoryGirl.create(:publication) }
+    before do
+      sign_in user
+      visit publication_path(pub)
+    end
+
+    it { should have_selector('a', text: 'Edit') }
   end
 
   describe "new publication" do

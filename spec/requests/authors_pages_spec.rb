@@ -4,10 +4,23 @@ describe "Authors" do
 
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
+
+  describe "index author list" do
+    before { visit authors_path }
+    it { should have_selector('a', text: 'Add new author') }  
+  
+  end
+
   describe "Profile page with name" do
     let(:author) { FactoryGirl.create (:author) }
-    before { visit author_path(author) }
+    before do
+      sign_in user
+      visit author_path(author)
+    end
     it { should have_content(author.surname) }
+
+    it { should_not have_selector('a', text: 'Edit') }
+    it { should_not have_selector('a', text: 'Add Publication') }
 
     it "have publications list" do
       author.publications.each do |pub|
@@ -16,11 +29,21 @@ describe "Authors" do
     end
   end
 
+  describe "Profile page logged in" do
+    let(:author) { FactoryGirl.create (:author) }
+    before do
+      sign_in author.user
+      visit author_path(author)
+    end
+    it { should have_selector('a', text: 'Edit') } 
+    it { should have_selector('a', text: 'Add Publication') } 
+  end
+
   describe "new author"
    let(:submit) { "Create new author" }
    before(:each) do
       sign_in user
-      visit '/authors/new'
+      visit new_author_path
     end
     
     describe "with invalid information" do
