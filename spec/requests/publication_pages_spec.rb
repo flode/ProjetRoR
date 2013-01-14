@@ -6,7 +6,20 @@ describe "Publication pages" do
   let(:user) { FactoryGirl.create(:user) }
 
   describe "index" do
-    it { should have_selector('a', text: 'Add Publication') }
+    describe "not logged in" do
+      before do
+        visit publications_path
+      end
+      it { should_not have_selector('a', text: 'Add Publication') }
+    end
+
+    describe "logged_in" do
+      before do
+        sign_in user
+        visit publications_path
+      end
+     it { should have_selector('a', text: 'Add Publication') }
+    end
   end
 
   describe "publication page" do
@@ -17,6 +30,7 @@ describe "Publication pages" do
 
     it { should have_selector('h1', text: pub.name) }
     it { should_not have_selector('a', text: 'Edit') }
+    it { should have_selector('a', text: 'All publications') }
     it { should have_content(pub.name) }
     it { should have_content(pub.date) }
 
