@@ -10,9 +10,25 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
 
-      <%= f.label :date %>
+      <%= f.label :type %>
+      <%= f.text_field :type %>
+
+      <%= f.label :publication %>
+      <%= f.text_field :publication %>
+
+      <%= f.label :month %>
+      <%= f.text_field :month %>
+
+      <%= f.label "Year" %>
       <%= f.text_field :date %>
-Authors
+
+      <%= f.label :desription %>
+      <%= f.text_field :description %>
+
+      <%= f.label :notes %>
+      <%= f.text_field :notes %>
+
+<h3>Authors</h3>
 <% for author in current_user.author %>
     <div>
       <%= check_box_tag "publication[author_ids][]", author.id, @publication.authors.include?(author) %>

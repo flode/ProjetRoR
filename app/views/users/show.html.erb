@@ -12,6 +12,7 @@
 <% if current_user != nil && @user.id == current_user.id %>
   <%= link_to "Add Author", new_author_path %><br/>
 <% end %>
+<h3>Responsible for</h3>
 <ul class="authors">
   <% @user.author.each do |author| %>
     <li>

@@ -3,8 +3,13 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= @publication.name %> ( <%= @publication.date %>)
+        <%= render "pub_name", pub: @publication %>
       </h1>
+<%= @publication.type %><br/>
+<%= @publication.description %>
+
+<h3>Notes</h3>
+<%= @publication.notes %>
     </section>
   </aside>
 </div>
@@ -12,7 +17,7 @@
 <% if current_user != nil #TODO nur der richige%>
   <%= link_to "Edit", edit_publication_path %>
 <% end %>
-
+<h3>Authors</h3>
 <ul class="authors">
   <% @publication.authors.each do |author| %>
     <li>

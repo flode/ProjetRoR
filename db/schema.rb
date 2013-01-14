@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130112114541) do
     t.integer  "month"
     t.string   "notes"
     t.string   "description"
+    t.string   "nn"
   end
 
   create_table "users", :force => true do |t|

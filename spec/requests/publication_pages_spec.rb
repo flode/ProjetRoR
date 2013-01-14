@@ -70,13 +70,13 @@ describe "Publication pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example Publication"
-        fill_in "Date",        with: "1991"
-        fill_in "Type",        with: "Journal"
-        fill_in "Publication",        with: "Science Journal"
-        fill_in "Month",        with: "5"
-        fill_in "Notes",        with: "nouveau"
-        fill_in "Description",        with: "boring"
+        fill_in "publication_name",         with: "Example Publication"
+        fill_in "publication_date",         with: "1991"
+        fill_in "publication_type",         with: "Journal"
+        fill_in "publication_publication",  with: "Science Journal"
+        fill_in "publication_month",        with: "5"
+        fill_in "publication_notes",        with: "nouveau"
+        fill_in "publication_description",  with: "boring"
       end
 
       it "should create a publication" do
