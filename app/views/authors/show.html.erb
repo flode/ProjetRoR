@@ -3,7 +3,7 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= @author.surname %>, <%= @author.forename %>
+        <%= render "shared/author_name", author: @author %>
       </h1>
       Description: <%= @author.description %><br/>
       Labo: <%= @author.lab %><br/>
