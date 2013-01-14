@@ -30,7 +30,6 @@ describe "Publication pages" do
 
     it { should have_selector('h1', text: pub.name) }
     it { should_not have_selector('a', text: 'Edit') }
-    it { should have_selector('a', text: 'All publications') }
     it { should have_content(pub.name) }
     it { should have_content(pub.date) }
 
