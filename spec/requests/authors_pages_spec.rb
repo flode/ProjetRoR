@@ -100,6 +100,7 @@ describe "Authors" do
 
   describe "edit" do
     let (:author) { FactoryGirl.create(:author) }
+    let! (:new_user) { FactoryGirl.create(:user) }
     before do
       sign_in author.user
       visit edit_author_path(author)
@@ -115,13 +116,12 @@ describe "Authors" do
     end
 
     describe "with valid information" do
-      let (:new_user) { FactoryGirl.create(:user) }
       let(:new_surname)  { "Chantal" }
       let(:new_forename) { "Avis" }
       before do
         fill_in "author_surname", with: new_surname
         fill_in "author_forename", with: new_forename
-        fill_in "author_user_id", with: new_user.id
+        select new_user.name, from: "author_user_id"
         click_button "Save changes"
       end
 
