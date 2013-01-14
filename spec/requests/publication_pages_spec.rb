@@ -107,5 +107,47 @@ describe "Publication pages" do
       end
     end
   end
+
+  describe "edit" do
+    let (:pub) { FactoryGirl.create(:publication) }
+    before do
+      sign_in pub.authors[0].user
+      visit edit_publication_path(pub)
+    end
+    
+    describe "with invalid information" do
+      before do
+        fill_in "publication_name", with: ""
+        click_button "Save changes"
+      end
+
+      it { should have_content('error') }
+    end
+
+    describe "with valid information" do
+      let(:new_name)  { "New Name" }
+      let(:new_date) { "1991" }
+      before do
+        fill_in "publication_name", with: new_name
+        fill_in "publication_date", with: new_date
+        click_button "Save changes"
+      end
+
+      it { should have_selector('title', text: new_name) }
+      it { should have_selector('div.alert.alert-success') }
+      specify { pub.reload.name.should  == new_name }
+      specify { pub.reload.date.should == new_date }
+    end
+
+    describe "as wrong user" do
+      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+      before { sign_in wrong_user }
+
+      describe "visiting Users#edit page" do
+        before { visit edit_publication_path(pub) }
+        it { should_not have_selector('title', text: full_title('Edit publication')) }
+      end
+    end
+  end
 end
 
