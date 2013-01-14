@@ -6,9 +6,18 @@ describe "Authors" do
   let(:user) { FactoryGirl.create(:user) }
 
   describe "index author list" do
-    before { visit authors_path }
+    before do
+      30.times { FactoryGirl.create(:user) }
+      visit authors_path
+    end
+
     it { should have_selector('a', text: 'Add new author') }  
-  
+
+    it "have authors list of names" do
+      Author.paginate(page: 1).each do |author|
+        page.should have_content(author.surname)
+      end
+    end
   end
 
   describe "Profile page with name" do

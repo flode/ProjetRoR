@@ -12,6 +12,7 @@ class PublicationsController < ApplicationController
 
   def new
     @publication = Publication.new
+    @authors = Author.all
   end
 
   def create
@@ -26,6 +27,7 @@ class PublicationsController < ApplicationController
 
   def edit
     @publication = Publication.find(params[:id])
+    @authors = Author.all
   end
 
   def update

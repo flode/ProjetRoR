@@ -29,7 +29,7 @@
       <%= f.text_field :notes %>
 
 <h3>Authors</h3>
-<% for author in current_user.author %>
+<% @authors.each do |author| %>
     <div>
       <%= check_box_tag "publication[author_ids][]", author.id, @publication.authors.include?(author) %>
       <%= author.surname %>, <%= author.forename %>
