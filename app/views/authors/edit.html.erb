@@ -1,0 +1,25 @@
+<% provide(:title, 'Edit author') %>
+<h1>Edit author</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@author) do |f| %>
+      <% @model = @author %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :forename %>
+      <%= f.text_field :forename %>
+
+      <%= f.label :surname %>
+      <%= f.text_field :surname %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :lab %>
+      <%= f.text_field :lab %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

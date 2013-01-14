@@ -1,5 +1,5 @@
 class PublicationsController < ApplicationController
-  before_filter :correct_user, only: [:edit]
+  before_filter :correct_user, only: [:edit, :update]
 
   def index
     @publications = Publication.paginate(page: params[:page])
