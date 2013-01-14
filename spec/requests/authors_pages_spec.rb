@@ -115,11 +115,13 @@ describe "Authors" do
     end
 
     describe "with valid information" do
+      let (:new_user) { FactoryGirl.create(:user) }
       let(:new_surname)  { "Chantal" }
       let(:new_forename) { "Avis" }
       before do
         fill_in "author_surname", with: new_surname
         fill_in "author_forename", with: new_forename
+        fill_in "author_user_id", with: new_user.id
         click_button "Save changes"
       end
 
@@ -127,6 +129,7 @@ describe "Authors" do
       it { should have_selector('div.alert.alert-success') }
       specify { author.reload.surname.should  == new_surname }
       specify { author.reload.forename.should == new_forename }
+      specify { author.reload.user_id.should == new_user.id }
     end
 
     describe "as wrong user" do

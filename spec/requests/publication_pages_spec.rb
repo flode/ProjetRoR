@@ -75,7 +75,7 @@ describe "Publication pages" do
 
     it { should have_selector('title', text: full_title('Create new publication')) }
 
-    let(:submit) { "New publication" }
+    let(:submit) { "Create new publication" }
 
     describe "with invalid information" do
       it "should not create a publication" do
