@@ -143,7 +143,7 @@ describe "Publication pages" do
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
       before { sign_in wrong_user }
 
-      describe "visiting Users#edit page" do
+      describe "visiting Publications#edit page" do
         before { visit edit_publication_path(pub) }
         it { should_not have_selector('title', text: full_title('Edit publication')) }
       end

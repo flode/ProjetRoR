@@ -78,4 +78,46 @@ describe "Authors" do
         it { should have_selector('div.alert.alert-success', text: 'New author created!') }
     end
   end
+
+  describe "edit" do
+    let (:author) { FactoryGirl.create(:author) }
+    before do
+      sign_in author.user
+      visit edit_author_path(author)
+    end
+
+    describe "with invalid information" do
+      before do
+        fill_in "author_surname", with: ""
+        click_button "Save changes"
+      end
+
+      it { should have_content('error') }
+    end
+
+    describe "with valid information" do
+      let(:new_surname)  { "Chantal" }
+      let(:new_forename) { "Avis" }
+      before do
+        fill_in "author_surname", with: new_surname
+        fill_in "author_forename", with: new_forename
+        click_button "Save changes"
+      end
+
+      it { should have_selector('title', text: new_surname) }
+      it { should have_selector('div.alert.alert-success') }
+      specify { author.reload.surname.should  == new_surname }
+      specify { author.reload.forename.should == new_forename }
+    end
+
+    describe "as wrong user" do
+      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+      before { sign_in wrong_user }
+
+      describe "visiting Authors#edit page" do
+        before { visit edit_author_path(author) }
+        it { should_not have_selector('title', text: full_title('Edit author')) }
+      end
+    end
+  end
 end
