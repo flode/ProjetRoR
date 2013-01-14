@@ -60,13 +60,22 @@ describe "Publication pages" do
     it { should have_selector('a', text: 'Edit') }
   end
 
+  describe "new publication not signed in" do
+    before do
+      visit new_publication_path
+    end
+    it { should_not have_selector('title', text: full_title('New publication')) }
+  end
+
   describe "new publication" do
     before do
       sign_in user
       visit new_publication_path
     end
 
-    let(:submit) { "Create new publication" }
+    it { should have_selector('title', text: full_title('Create new publication')) }
+
+    let(:submit) { "New publication" }
 
     describe "with invalid information" do
       it "should not create a publication" do

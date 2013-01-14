@@ -5,13 +5,13 @@ describe "Authors" do
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
 
-  describe "index author list" do
+  describe "index author list not signed in" do
     before do
       30.times { FactoryGirl.create(:user) }
       visit authors_path
     end
 
-    it { should have_selector('a', text: 'Add new author') }  
+    it { should_not have_selector('a', text: 'Add new author') }
 
     it "have authors list of names" do
       Author.paginate(page: 1).each do |author|
@@ -48,13 +48,22 @@ describe "Authors" do
     it { should have_selector('a', text: 'Add Publication') } 
   end
 
-  describe "new author"
-   let(:submit) { "Create new author" }
-   before(:each) do
+  describe "new author not signed in" do
+    before do
+      visit new_author_path
+    end
+    it { should_not have_selector('title', text: full_title('Create new author')) }
+  end
+
+  describe "new author" do
+    let(:submit) { "Create new author" }
+    before(:each) do
       sign_in user
       visit new_author_path
     end
     
+    it { should have_selector('title', text: full_title('Create new author')) }
+
     describe "with invalid information" do
       it "should not create an author" do
         expect { click_button submit }.not_to change(Author, :count)
@@ -83,8 +92,9 @@ describe "Authors" do
         let(:author) { Author.find_by_forename_and_surname('F', 'L') }
 
         it { should have_selector('title', text: author.surname) }
-#	expect(author.user_id).to eq(user.id)
+	specify { author.user_id == user.id }
         it { should have_selector('div.alert.alert-success', text: 'New author created!') }
+      end
     end
   end
 

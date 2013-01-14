@@ -1,4 +1,5 @@
 class AuthorsController < ApplicationController
+  before_filter :signed_in_user, only: [:new, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
 
   def index
@@ -39,6 +40,11 @@ class AuthorsController < ApplicationController
   end
 
   private
+    def signed_in_user
+      store_location
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
     def correct_user
       @author = Author.find(params[:id])
       redirect_to(author_path(@author)) unless current_user != nil && current_user.id == @author.user.id

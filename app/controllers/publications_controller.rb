@@ -1,4 +1,5 @@
 class PublicationsController < ApplicationController
+  before_filter :signed_in_user, only: [:new, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
 
   def index
@@ -17,6 +18,7 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(params[:publication])
+    @authors = Author.all
     if @publication.save
       flash[:success] = "New publication created!"
       redirect_to @publication
@@ -32,6 +34,7 @@ class PublicationsController < ApplicationController
 
   def update
     @publication = Publication.find(params[:id])
+    @authors = Author.all
     if @publication.update_attributes(params[:publication])
       flash[:success] = "Publication updated"
       redirect_to @publication
@@ -41,6 +44,11 @@ class PublicationsController < ApplicationController
   end
 
   private
+    def signed_in_user
+      store_location
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
     def correct_user
       redirect_to(publication_path(@publication)) unless correct_user_publication
     end
