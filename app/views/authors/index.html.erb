@@ -9,7 +9,7 @@
 <ul class="authors">
   <% @authors.each do |author| %>
     <li>
-      <%= author.forename %>
+      <%= link_to author.forename, author %>
     </li>
   <% end %>
 </ul>
