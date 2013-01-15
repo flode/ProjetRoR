@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: publications
+#
+#  id          :integer          not null, primary key
+#  date        :string(255)
+#  name        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  type        :string(255)
+#  publication :string(255)
+#  month       :integer
+#  notes       :string(255)
+#  description :string(255)
+#  nn          :string(255)
+#
+
 require 'spec_helper'
 
 describe Publication do
