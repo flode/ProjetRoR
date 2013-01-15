@@ -73,7 +73,7 @@ describe "Publication pages" do
       visit new_publication_path
     end
 
-    it { should have_selector('title', text: full_title('Create new publication')) }
+    it { should have_selector('title', text: full_title('New publication')) }
 
     let(:submit) { "Create new publication" }
 
